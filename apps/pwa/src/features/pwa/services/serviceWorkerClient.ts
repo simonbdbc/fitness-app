@@ -9,7 +9,7 @@ type ServiceWorkerMessage = {
 };
 
 export const pwaCachePrefix = "acrea-fitness";
-export const lastUpdateErrorKey = "acrea-fitness.pwa-last-update-error";
+export const lastUpdateErrorKey = "acrea-fitness-public-demo.pwa-last-update-error";
 export const serviceWorkerUrl = "/service-worker.js";
 export const fallbackBuildInfo: PwaBuildInfo = {
   appName: "ACREA Fitness",
@@ -19,11 +19,11 @@ export const fallbackBuildInfo: PwaBuildInfo = {
   releaseChannel: "native",
   buildDate: "native",
   origin: "native",
-  supportContact: "support@acrea-fitness.fr",
+  supportContact: "Démonstration locale",
 };
 
 const developmentServiceWorkerResetKey =
-  "acrea-fitness.pwa-development-service-worker-reset";
+  "acrea-fitness-public-demo.pwa-development-service-worker-reset";
 const buildInfoUrl = "/pwa-build.json";
 
 export async function fetchBuildInfo() {

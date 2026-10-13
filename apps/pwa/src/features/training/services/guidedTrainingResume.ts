@@ -6,7 +6,7 @@ import {
   waitForAsyncStorageOperation,
 } from "@shared/persistence";
 
-const guidedTrainingStoragePrefix = "acrea-fitness.guided-training.v1";
+const guidedTrainingStoragePrefix = "acrea-fitness-public-demo.guided-training.v1";
 
 export type GuidedTrainingResumeState = {
   planKey: string;

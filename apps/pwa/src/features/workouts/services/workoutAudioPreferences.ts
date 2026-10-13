@@ -7,9 +7,9 @@ import {
 
 import type { WorkoutAudioMode } from "./workoutCueAudio";
 
-const workoutAudioCuesModeStorageKey = "acrea-fitness.audio-cues.mode";
+const workoutAudioCuesModeStorageKey = "acrea-fitness-public-demo.audio-cues.mode";
 const legacyWorkoutAudioCuesEnabledStorageKey =
-  "acrea-fitness.audio-cues.enabled";
+  "acrea-fitness-public-demo.audio-cues.enabled";
 const disabledStorageValue = "false";
 const defaultWorkoutAudioMode: WorkoutAudioMode = "sound";
 const validWorkoutAudioModes = new Set<WorkoutAudioMode>([

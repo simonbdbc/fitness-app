@@ -51,9 +51,9 @@ const defaultOptions: RuntimeLockOptions = {
   }),
   heartbeatMs: 4_000,
   instanceId: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
-  leaseKey: "acrea-fitness.sqlite-runtime-lease",
+  leaseKey: "acrea-fitness-public-demo.sqlite-runtime-lease",
   leaseTtlMs: 12_000,
-  lockName: "acrea-fitness.sqlite.runtime",
+  lockName: "acrea-fitness-public-demo.sqlite.runtime",
 };
 
 export function createBrowserRuntimeLock(

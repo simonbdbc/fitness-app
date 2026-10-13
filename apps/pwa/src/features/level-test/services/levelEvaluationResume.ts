@@ -12,7 +12,7 @@ export type LevelEvaluationFeedbackDraft = {
   technicalValid: boolean | null;
 };
 
-const storagePrefix = "acrea-fitness.level-evaluation-feedback.v2";
+const storagePrefix = "acrea-fitness-public-demo.level-evaluation-feedback.v2";
 
 export async function readLevelEvaluationFeedbackDraft(key: string) {
   const persistedKey = storageKey(key);

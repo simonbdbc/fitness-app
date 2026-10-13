@@ -26,28 +26,6 @@ import {
 import { ensureCatalogReady } from "./catalogLifecycle";
 
 export {
-  deleteCatalogEquipmentLocal,
-  upsertCatalogEquipmentLocal,
-} from "./catalogEquipmentRepository";
-export {
-  deleteCatalogExerciseLocal,
-  reviewCatalogReleaseExercisesLocal,
-  upsertCatalogExerciseLocal,
-  type CatalogExerciseReviewBatch,
-} from "./catalogExerciseRepository";
-export {
-  deleteCatalogFormatLocal,
-  deleteCatalogIntervalLocal,
-  deleteCatalogRepetitionLocal,
-  deleteCatalogRestLocal,
-  deleteCatalogSeriesLocal,
-  upsertCatalogFormatLocal,
-  upsertCatalogIntervalLocal,
-  upsertCatalogRepetitionLocal,
-  upsertCatalogRestLocal,
-  upsertCatalogSeriesLocal,
-} from "./catalogFormatRepository";
-export {
   downloadCompleteCatalogLibrary,
   acceptPendingCatalogReleaseUpdate,
   ensureCatalogExerciseDetails,
@@ -57,23 +35,6 @@ export {
   syncCatalogFromRemoteNow,
   checkCatalogReleaseUpdate,
 } from "./catalogLifecycle";
-export {
-  activateCatalogRelease,
-  inspectCatalogReleaseActivation,
-  listCatalogReleases,
-  rollbackCatalogReleaseActivation,
-  CatalogReleaseActivationError,
-  type CatalogReleaseActivationCheck,
-  type CatalogReleaseActivationEvidence,
-  type CatalogReleaseActivationIssue,
-  type CatalogReleaseRollbackResult,
-} from "./catalogReleaseActivation";
-export {
-  deleteCatalogSessionTemplateLevelLocal,
-  deleteCatalogSessionTemplateLocal,
-  upsertCatalogSessionTemplateLevelLocal,
-  upsertCatalogSessionTemplateLocal,
-} from "./catalogSessionRepository";
 
 export async function listCatalogExercises(
   filters: CatalogFilters = {},

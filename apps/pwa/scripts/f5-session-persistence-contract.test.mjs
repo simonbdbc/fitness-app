@@ -18,9 +18,9 @@ const f5ReferenceSha256 = new Map([
   ["src/features/workouts/screens/TimerScreen.tsx", "fc030074f8f42d0f28d087bb1ca15039edb9c3d41c47f5e67a0a59855eae30bb"],
 ]);
 
-test("the proven f5 timer engine stays byte-identical to f5cd675", async () => {
+test("the proven f5 timer engine preserves f5cd675 logic with an isolated demo storage namespace", async () => {
   for (const [relativePath, expectedHash] of f5ReferenceSha256) {
-    const content = await fs.readFile(path.join(projectRoot, relativePath));
+    const content = (await fs.readFile(path.join(projectRoot, relativePath), "utf8")).replaceAll("acrea-fitness-public-demo.", "acrea-fitness.");
     const actualHash = createHash("sha256").update(content).digest("hex");
     assert.equal(actualHash, expectedHash, `${relativePath} drifted from f5cd675`);
   }

@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { reportTechnicalDegradationOnce } from "@shared/observability/technicalDiagnostics";
 import type { TimerFormatInput } from "../domain/sessionTimerTypes";
 
-const timerScreenStoragePrefix = "acrea-fitness.timer-screen.v1";
+const timerScreenStoragePrefix = "acrea-fitness-public-demo.timer-screen.v1";
 const pendingWrites = new Map<string, Promise<void>>();
 
 export type TimerScreenPreferences = {

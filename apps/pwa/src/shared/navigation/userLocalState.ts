@@ -9,15 +9,15 @@ import {
 
 function isUserLocalStateKey(key: string, userId: string) {
   const encodedUserId = encodeURIComponent(userId);
-  const guidedTrainingPrefix = "acrea-fitness.guided-training.v1:";
+  const guidedTrainingPrefix = "acrea-fitness-public-demo.guided-training.v1:";
   const directPrefixes = [
-    "acrea-fitness.guided-training-feedback.v1:",
-    "acrea-fitness.level-evaluation-feedback.v1:",
-    "acrea-fitness.level-evaluation-feedback.v2:",
+    "acrea-fitness-public-demo.guided-training-feedback.v1:",
+    "acrea-fitness-public-demo.level-evaluation-feedback.v1:",
+    "acrea-fitness-public-demo.level-evaluation-feedback.v2:",
   ];
   const timerPrefixes = [
-    "acrea-fitness.session-timer.v1:",
-    "acrea-fitness.session-timer.v2:",
+    "acrea-fitness-public-demo.session-timer.v1:",
+    "acrea-fitness-public-demo.session-timer.v2:",
   ];
 
   return (
@@ -29,8 +29,8 @@ function isUserLocalStateKey(key: string, userId: string) {
     ) ||
     (timerPrefixes.some((prefix) => key.startsWith(prefix)) &&
       key.includes(`%3A${encodedUserId}%3A`)) ||
-    key === `acrea-fitness.timer-screen.v1:${encodedUserId}` ||
-    key === `catalog-library-filter-preferences:v1:${userId}`
+    key === `acrea-fitness-public-demo.timer-screen.v1:${encodedUserId}` ||
+    key === `fitness-public-demo-library-filter:v1:${userId}`
   );
 }
 

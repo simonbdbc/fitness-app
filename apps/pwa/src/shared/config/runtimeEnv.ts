@@ -39,6 +39,7 @@ function cleanEnvValue(value: string | undefined) {
 }
 
 export function readPublicEnv(key: PublicEnvKey) {
+  if (["EXPO_PUBLIC_PWA_ANALYTICS_ENDPOINT", "EXPO_PUBLIC_API_BASE_URL", "EXPO_PUBLIC_SUPABASE_URL", "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY"].includes(key)) return "";
   if (typeof window !== "undefined") {
     const runtimeValue = cleanEnvValue(window.__ACREA_FITNESS_ENV__?.[key]);
     if (runtimeValue) {

@@ -88,7 +88,7 @@ const installPromptBridgeSource = await fs.readFile(
   "utf8",
 );
 const cloudflareBuildSource = await fs.readFile(
-  path.join(projectRoot, "scripts/prepare-cloudflare-pages.mjs"),
+  path.join(projectRoot, "scripts/prepare-demo-web.mjs"),
   "utf8",
 );
 const browserInstallElementSource = await fs.readFile(
@@ -260,14 +260,15 @@ test("display state is runtime-scoped and persisted only through AsyncStorage", 
   assert.match(appLayoutSource, /displaySessionStorageKey/);
   assert.match(screenShellSource, /usePersistentScrollPosition/);
   assert.match(displaySessionSource, /@react-native-async-storage\/async-storage/);
-  assert.match(displaySessionSource, /acrea-fitness\.display-session\.v1/);
+  assert.match(displaySessionSource, /acrea-fitness-public-demo\.display-session\.v1/);
   assert.match(displaySessionSource, /const runtimeId = createRuntimeId\(\)/);
   assert.doesNotMatch(displaySessionSource, /Supabase|localStorage|sessionStorage/);
 });
 
 test("foreground auth refresh cannot rehydrate the mounted profile tree", () => {
-  assert.match(authProviderSource, /resolveAuthSessionLifecycleAction/);
-  assert.match(authProviderSource, /action === "session-only"/);
+  assert.match(authProviderSource, /DemoAuthProvider/);
+  assert.doesNotMatch(authProviderSource, /onAuthStateChange|getSupabaseClient|createClient/);
+  assert.match(authProviderSource, /AsyncStorage.getItem\(demoSessionStorageKey\)/);
   assert.match(profileProviderSource, /const userId = user\?\.id \?\? null/);
   assert.match(profileProviderSource, /loadProfileLocalFirst/);
   assert.doesNotMatch(profileProviderSource, /\[isAuthLoading, user\]/);

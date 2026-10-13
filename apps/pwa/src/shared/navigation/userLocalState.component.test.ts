@@ -11,23 +11,23 @@ describe("user local state", () => {
 
   it("clears only the signed-out user's functional values", async () => {
     vi.mocked(AsyncStorage.getAllKeys).mockResolvedValue([
-      "acrea-fitness.timer-screen.v1:user-a",
-      "acrea-fitness.session-timer.v2:timer%3Auser-a%3Astandalone",
-      "acrea-fitness.session-timer.v2:timer%3Auser-b%3Astandalone",
-      "acrea-fitness.guided-training.v1:user-a",
-      "acrea-fitness.guided-training.v1:user-b",
-      "catalog-library-filter-preferences:v1:user-a",
-      "catalog-library-filter-preferences:v1:user-b",
+      "acrea-fitness-public-demo.timer-screen.v1:user-a",
+      "acrea-fitness-public-demo.session-timer.v2:timer%3Auser-a%3Astandalone",
+      "acrea-fitness-public-demo.session-timer.v2:timer%3Auser-b%3Astandalone",
+      "acrea-fitness-public-demo.guided-training.v1:user-a",
+      "acrea-fitness-public-demo.guided-training.v1:user-b",
+      "fitness-public-demo-library-filter:v1:user-a",
+      "fitness-public-demo-library-filter:v1:user-b",
       "unrelated-key",
     ]);
 
     await clearUserLocalState("user-a");
 
     expect(AsyncStorage.multiRemove).toHaveBeenCalledWith([
-      "acrea-fitness.timer-screen.v1:user-a",
-      "acrea-fitness.session-timer.v2:timer%3Auser-a%3Astandalone",
-      "acrea-fitness.guided-training.v1:user-a",
-      "catalog-library-filter-preferences:v1:user-a",
+      "acrea-fitness-public-demo.timer-screen.v1:user-a",
+      "acrea-fitness-public-demo.session-timer.v2:timer%3Auser-a%3Astandalone",
+      "acrea-fitness-public-demo.guided-training.v1:user-a",
+      "fitness-public-demo-library-filter:v1:user-a",
     ]);
   });
 });

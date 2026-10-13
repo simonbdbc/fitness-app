@@ -23,7 +23,7 @@ describe("ThemeProvider", () => {
 
     await waitFor(() => {
       expect(AsyncStorage.setItem).toHaveBeenLastCalledWith(
-        "acrea-fitness.theme",
+        "acrea-fitness-public-demo.theme",
         "pulse-light",
       );
     });

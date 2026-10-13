@@ -1,5 +1,5 @@
 {
-  "version": "evaluation-only-20261013.1",
+  "version": "public-demo-20261013.1",
   "allowedExerciseSlugs": [
     "air-squat",
     "burpee",
@@ -9,5 +9,17 @@
     "push-up"
   ],
   "contract": "contracts/catalog/acrea-level-evaluation-v4.json",
-  "note": "Only the V4 evaluation exercises are public. Full catalogue, incomplete fiches and historical exercise rows remain private."
+  "note": "Offline public demonstration. Six V4 exercises, nine runtime formats; no backend, production SQL, remote credentials or internal reports.",
+  "variant": "public-demo",
+  "allowedFormatCodes": [
+    "format-interval-60s-s03-rest60s",
+    "format-reps-s01-maximum-rest30s",
+    "format-reps-s02-r08-rest90s",
+    "format-reps-s02-r12-rest90s",
+    "format-reps-s02-r16-rest90s",
+    "format-reps-s03-r08-rest90s",
+    "format-reps-s03-r10-rest60s",
+    "format-reps-s03-r12-rest90s",
+    "format-reps-s03-r16-rest90s"
+  ]
 }

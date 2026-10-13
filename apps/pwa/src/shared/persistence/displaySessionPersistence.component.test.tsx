@@ -35,17 +35,17 @@ describe("display session persistence", () => {
   });
 
   it("clears obsolete display runtimes without touching functional state", async () => {
-    storedValues.set("acrea-fitness.display-session.v1:old:user:route", "{}");
-    storedValues.set("acrea-fitness.screen-state.v1:user:profile", "{}");
-    storedValues.set("acrea-fitness.session-timer.v2:timer", "timer");
+    storedValues.set("acrea-fitness-public-demo.display-session.v1:old:user:route", "{}");
+    storedValues.set("acrea-fitness-public-demo.screen-state.v1:user:profile", "{}");
+    storedValues.set("acrea-fitness-public-demo.session-timer.v2:timer", "timer");
 
     await initializeDisplaySessionPersistence();
 
-    expect(storedValues.has("acrea-fitness.display-session.v1:old:user:route"))
+    expect(storedValues.has("acrea-fitness-public-demo.display-session.v1:old:user:route"))
       .toBe(false);
-    expect(storedValues.has("acrea-fitness.screen-state.v1:user:profile"))
+    expect(storedValues.has("acrea-fitness-public-demo.screen-state.v1:user:profile"))
       .toBe(false);
-    expect(storedValues.get("acrea-fitness.session-timer.v2:timer")).toBe(
+    expect(storedValues.get("acrea-fitness-public-demo.session-timer.v2:timer")).toBe(
       "timer",
     );
   });

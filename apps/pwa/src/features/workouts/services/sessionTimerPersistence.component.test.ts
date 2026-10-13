@@ -76,7 +76,7 @@ describe("session timer persistence", () => {
       (await restoreSessionTimerState("evaluation", changedPlan)).status,
     ).toBe("idle");
     expect(AsyncStorage.removeItem).toHaveBeenCalledWith(
-      "acrea-fitness.session-timer.v2:evaluation",
+      "acrea-fitness-public-demo.session-timer.v2:evaluation",
     );
   });
 

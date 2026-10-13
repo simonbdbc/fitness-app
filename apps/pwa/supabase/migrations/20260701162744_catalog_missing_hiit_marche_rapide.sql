@@ -1,2 +1,0 @@
--- 20260701162744_catalog_missing_hiit_marche_rapide.sql
--- No-op: le reset seed numerique de 202606300001_catalog_normalized.sql contient deja ce rattrapage.

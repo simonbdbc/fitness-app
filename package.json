@@ -4,25 +4,15 @@
   "private": true,
   "packageManager": "pnpm@11.7.0",
   "scripts": {
-    "setup": "pnpm --dir apps/landing install --frozen-lockfile && pnpm --dir apps/pwa install --frozen-lockfile && pnpm tooling:check",
-    "tooling:check": "pnpm --dir apps/pwa tooling:check",
-    "dev:landing": "pnpm --dir apps/landing dev",
-    "build:landing": "pnpm --dir apps/landing build",
-    "preview:landing": "pnpm --dir apps/landing preview",
-    "dev:pwa": "pnpm --dir apps/pwa start",
-    "web:pwa": "pnpm --dir apps/pwa web",
-    "build:pwa": "pnpm --dir apps/pwa build:web",
-    "typecheck:pwa": "pnpm --dir apps/pwa typecheck",
-    "validate:pwa": "pnpm --dir apps/pwa validate:pwa",
-    "library:v2:audit": "node scripts/audit-exercise-library-v2.mjs",
-    "library:v2:translations:check": "python3 scripts/check-exercise-library-v2-translations.py",
-    "library:v2:generate": "pnpm library:v2:audit",
-    "library:v2:check": "node scripts/audit-exercise-library-v2.mjs --check && pnpm library:v2:translations:check",
-    "library:generate": "pnpm library:v2:audit && pnpm --dir apps/pwa library:exercise:generate && pnpm --dir apps/pwa library:exercise:supabase:generate",
-    "library:check": "pnpm library:v2:check && pnpm --dir apps/pwa library:exercise:check",
-    "build:frontends": "pnpm build:landing && pnpm build:pwa"
-  },
-  "devDependencies": {
-    "jsdom": "26.1.0"
+    "setup": "pnpm --dir apps/pwa install --frozen-lockfile",
+    "dev": "pnpm --dir apps/pwa web",
+    "build": "pnpm --dir apps/pwa build:web",
+    "preview": "pnpm --dir apps/pwa exec node scripts/serve-dist.mjs",
+    "demo": "pnpm build && pnpm preview",
+    "typecheck": "pnpm --dir apps/pwa typecheck",
+    "test": "pnpm --dir apps/pwa test:demo",
+    "e2e": "pnpm --dir apps/pwa e2e:test",
+    "library:generate": "node scripts/audit-exercise-library-v2.mjs && pnpm --dir apps/pwa library:exercise:generate",
+    "library:check": "node scripts/audit-exercise-library-v2.mjs --check && pnpm --dir apps/pwa library:exercise:check"
   }
 }

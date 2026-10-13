@@ -21,7 +21,7 @@ export {
 } from "./databaseErrors";
 export type { LocalDatabase } from "./localDatabase";
 
-const databaseName = "acrea-fitness.db";
+const databaseName = "acrea-fitness-public-demo.db";
 let databasePromise: Promise<SQLite.SQLiteDatabase> | null = null;
 const databaseTaskQueue = createAsyncTaskQueue();
 const browserRuntimeLock = createBrowserRuntimeLock();

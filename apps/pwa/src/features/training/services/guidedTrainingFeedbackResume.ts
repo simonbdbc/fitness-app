@@ -7,7 +7,7 @@ import {
 } from "@shared/persistence";
 import type { SessionFeedbackDraft } from "../domain/trainingPresentation";
 
-const storagePrefix = "acrea-fitness.guided-training-feedback.v1";
+const storagePrefix = "acrea-fitness-public-demo.guided-training-feedback.v1";
 
 export type GuidedTrainingFeedbackResumeState = {
   drafts: Record<string, SessionFeedbackDraft>;

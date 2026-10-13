@@ -8,10 +8,10 @@ import {
   waitForAsyncStorageOperations,
 } from "./asyncStorageQueue";
 
-const displaySessionPrefix = "acrea-fitness.display-session.v1";
-const legacyScreenStatePrefix = "acrea-fitness.screen-state.v1";
-const legacyInstalledRoutePrefix = "acrea-fitness.installed-route-resume.v2";
-const legacyCatalogFilterPrefix = "catalog-library-filter-preferences:v1";
+const displaySessionPrefix = "acrea-fitness-public-demo.display-session.v1";
+const legacyScreenStatePrefix = "acrea-fitness-public-demo.screen-state.v1";
+const legacyInstalledRoutePrefix = "acrea-fitness-public-demo.installed-route-resume.v2";
+const legacyCatalogFilterPrefix = "fitness-public-demo-library-filter:v1";
 const runtimeId = createRuntimeId();
 
 type PersistedDisplaySessionState<TValue> = {

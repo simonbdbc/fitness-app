@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "ACREA Fitness",
-    "slug": "acrea-fitness",
+    "name": "ACREA Fitness Demo",
+    "slug": "acrea-fitness-demo",
     "version": "0.1.0",
-    "scheme": "acreafitness",
+    "scheme": "acreafitnessdemo",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "icon": "./assets/app-icon.png",
@@ -12,11 +12,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.acrea.fitness",
+      "bundleIdentifier": "com.acrea.fitnessdemo",
       "icon": "./assets/app-icon.png"
     },
     "android": {
-      "package": "com.acrea.fitness",
+      "package": "com.acrea.fitnessdemo",
       "adaptiveIcon": {
         "foregroundImage": "./assets/app-icon.png",
         "backgroundColor": "#0c0f13"

@@ -40,7 +40,7 @@ export function UninstallAppScreen() {
           <StatusRow label="Installation" value={installStatus} />
           <StatusRow
             label="Support"
-            value={info?.supportContact ?? "support@acrea-fitness.fr"}
+            value={info?.supportContact ?? "Démonstration locale"}
           />
         </View>
         <View className="flex-row flex-wrap gap-2">

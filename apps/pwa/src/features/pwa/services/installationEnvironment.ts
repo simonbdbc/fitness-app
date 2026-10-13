@@ -2,7 +2,7 @@ import { Platform } from "react-native";
 
 import type { PwaDisplayMode, PwaInstallStatus } from "../types";
 
-const installDismissedAtKey = "acrea-fitness.pwa-install-dismissed-at";
+const installDismissedAtKey = "acrea-fitness-public-demo.pwa-install-dismissed-at";
 const installDismissalTtlMs = 14 * 24 * 60 * 60 * 1_000;
 
 export function readPwaDisplayMode(): PwaDisplayMode {

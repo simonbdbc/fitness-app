@@ -34,7 +34,7 @@ type ThemeContextValue = {
 };
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
-const themeStorageKey = "acrea-fitness.theme";
+const themeStorageKey = "acrea-fitness-public-demo.theme";
 
 type ThemeColorMetaElement = {
   setAttribute: (name: string, value: string) => void;

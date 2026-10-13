@@ -75,7 +75,7 @@ export function PwaDashboardScreen() {
           </ActionButton>
         </View>
         <BodyText selectable>
-          Support : {info?.supportContact ?? "support@acrea-fitness.fr"}
+          Support : {info?.supportContact ?? "Démonstration locale"}
         </BodyText>
       </Card>
 

@@ -26,10 +26,6 @@ const clientConfigSource = await fs.readFile(
   path.join(projectRoot, "src/shared/config/clientConfig.ts"),
   "utf8",
 );
-const gitlabCiSource = await fs.readFile(
-  path.join(projectRoot, "../../.gitlab-ci.yml"),
-  "utf8",
-);
 const connectionStatusSource = await fs.readFile(
   path.join(projectRoot, "src/features/pwa/components/ConnectionStatus.tsx"),
   "utf8",
@@ -94,10 +90,11 @@ test("connection health never promotes browser online state directly to API avai
   assert.match(providerSource, /useConnectionHealth\(\)/);
 });
 
-test("production API activation stays explicit", () => {
+test("public demonstration cannot activate an external API", () => {
   assert.doesNotMatch(clientConfigSource, /productionApiBaseUrl/);
   assert.doesNotMatch(clientConfigSource, /acrea-fitness-api\.sbcenter\.fr/);
-  assert.doesNotMatch(gitlabCiSource, /API_PRODUCTION_ORIGIN/);
+  assert.match(clientConfigSource, /isApiConfigured: boolean = false/);
+  assert.match(clientConfigSource, /isSupabaseConfigured: boolean = false/);
 });
 
 test("connection probes are deduplicated and temporarily cached", () => {

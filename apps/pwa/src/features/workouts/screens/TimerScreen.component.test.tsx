@@ -200,7 +200,7 @@ describe("TimerScreen", () => {
     };
     listCatalogTimerOptions.mockResolvedValue(restoredOptions);
     vi.mocked(AsyncStorage.getItem).mockImplementation(async (key) =>
-      key === "acrea-fitness.timer-screen.v1:user-a"
+      key === "acrea-fitness-public-demo.timer-screen.v1:user-a"
         ? JSON.stringify({
             formatType: "intervalles",
             intervalCode: "interval-30s",
@@ -233,7 +233,7 @@ describe("TimerScreen", () => {
       ),
     );
     expect(AsyncStorage.setItem).toHaveBeenCalledWith(
-      "acrea-fitness.timer-screen.v1:user-a",
+      "acrea-fitness-public-demo.timer-screen.v1:user-a",
       expect.stringContaining('"formatType":"intervalles"'),
     );
   });

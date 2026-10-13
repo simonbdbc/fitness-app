@@ -8,7 +8,7 @@ import {
 } from "../domain/sessionTimerMachine";
 import type { SessionTimerPlan } from "../domain/sessionTimerTypes";
 
-const timerStoragePrefix = "acrea-fitness.session-timer.v2";
+const timerStoragePrefix = "acrea-fitness-public-demo.session-timer.v2";
 const pendingStorageOperations = new Map<string, Promise<void>>();
 
 type PersistedTimerState = {

@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import type { AuthChangeEvent, Session } from "@supabase/supabase-js";
 import {
   createContext,
   type PropsWithChildren,
@@ -7,13 +6,10 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from "react";
 
 import { clearUserLocalState } from "@shared/navigation/userLocalState";
-import { isSupabaseConfigured } from "@shared/config/clientConfig";
-import { getSupabaseClient, supabase } from "@shared/config/supabaseClient";
 import { reportTechnicalDegradation } from "@shared/observability/technicalDiagnostics";
 import {
   authErrorMessage,
@@ -22,13 +18,6 @@ import {
   type AuthSession,
   type AuthUser,
 } from "../domain/authPolicy";
-import {
-  fallbackUserFromSession,
-  loadUserFromProfile,
-  signOutCurrentSupabaseSession,
-  toAuthSession,
-} from "../services/supabaseAuthSession";
-import { resolveAuthSessionLifecycleAction } from "../services/authSessionLifecycle";
 
 export type { UserAccountType } from "../domain/authPolicy";
 
@@ -58,14 +47,10 @@ type AuthContextValue = {
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
-const demoSessionStorageKey = "acrea-fitness.demo-session";
+const demoSessionStorageKey = "acrea-fitness-public-demo.session";
 
 export function AuthProvider({ children }: PropsWithChildren) {
-  if (!isSupabaseConfigured || !supabase) {
-    return <DemoAuthProvider>{children}</DemoAuthProvider>;
-  }
-
-  return <SupabaseAuthProvider>{children}</SupabaseAuthProvider>;
+  return <DemoAuthProvider>{children}</DemoAuthProvider>;
 }
 
 function DemoAuthProvider({ children }: PropsWithChildren) {
@@ -176,295 +161,6 @@ function DemoAuthProvider({ children }: PropsWithChildren) {
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
-
-function SupabaseAuthProvider({ children }: PropsWithChildren) {
-  const client = getSupabaseClient();
-  const [session, setSession] = useState<AuthSession | null>(null);
-  const [user, setUser] = useState<AuthUser | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [notice, setNotice] = useState<string | null>(null);
-  const [authorizationError, setAuthorizationError] =
-    useState<string | null>(null);
-  const mountedRef = useRef(true);
-  const userRef = useRef<AuthUser | null>(null);
-  const profileRequestRevisionRef = useRef(0);
-  const hydratingUserIdRef = useRef<string | null>(null);
-
-  const commitSession = useCallback((nextSession: Session) => {
-    const nextAuthSession = toAuthSession(nextSession);
-    setSession((current) =>
-      current?.provider === nextAuthSession.provider &&
-      current.accessToken === nextAuthSession.accessToken
-        ? current
-        : nextAuthSession,
-    );
-  }, []);
-
-  const clearSessionState = useCallback(() => {
-    profileRequestRevisionRef.current += 1;
-    hydratingUserIdRef.current = null;
-    userRef.current = null;
-    if (mountedRef.current) {
-      setSession(null);
-      setUser(null);
-      setAuthorizationError(null);
-    }
-  }, []);
-
-  const applySession = useCallback(async (nextSession: Session | null, forceProfileRefresh = false) => {
-    if (!nextSession) {
-      clearSessionState();
-      return null;
-    }
-
-    commitSession(nextSession);
-    const nextUserId = nextSession.user.id;
-    if (
-      !forceProfileRefresh &&
-      (userRef.current?.id === nextUserId ||
-        hydratingUserIdRef.current === nextUserId)
-    ) {
-      return nextSession.access_token;
-    }
-
-    const requestRevision = profileRequestRevisionRef.current + 1;
-    profileRequestRevisionRef.current = requestRevision;
-    hydratingUserIdRef.current = nextUserId;
-    try {
-      const nextUser = await loadUserFromProfile(nextSession);
-      if (
-        mountedRef.current &&
-        profileRequestRevisionRef.current === requestRevision
-      ) {
-        userRef.current = nextUser;
-        setUser((current) =>
-          areAuthUsersEqual(current, nextUser) ? current : nextUser,
-        );
-        setAuthorizationError(null);
-      }
-    } catch (unknownError) {
-      const nextUser = fallbackUserFromSession(nextSession);
-      if (
-        mountedRef.current &&
-        profileRequestRevisionRef.current === requestRevision
-      ) {
-        if (userRef.current?.id !== nextUserId) {
-          userRef.current = nextUser;
-          setUser((current) =>
-            areAuthUsersEqual(current, nextUser) ? current : nextUser,
-          );
-        }
-        setAuthorizationError(
-          `Profil utilisateur indisponible. La session active est conservée. ${authErrorMessage(unknownError)}`,
-        );
-      }
-    } finally {
-      if (
-        profileRequestRevisionRef.current === requestRevision &&
-        hydratingUserIdRef.current === nextUserId
-      ) {
-        hydratingUserIdRef.current = null;
-      }
-    }
-    return nextSession.access_token;
-  }, [clearSessionState, commitSession]);
-
-  const applyAuthEvent = useCallback(
-    (event: AuthChangeEvent, nextSession: Session | null) => {
-      const action = resolveAuthSessionLifecycleAction({
-        activeUserId: userRef.current?.id ?? null,
-        event,
-        hydratingUserId: hydratingUserIdRef.current,
-        nextUserId: nextSession?.user.id ?? null,
-      });
-      if (action === "clear") {
-        clearSessionState();
-        return Promise.resolve<string | null>(null);
-      }
-      if (action === "ignore" || !nextSession) {
-        return Promise.resolve<string | null>(null);
-      }
-      if (action === "session-only") {
-        commitSession(nextSession);
-        return Promise.resolve(nextSession.access_token);
-      }
-
-      return applySession(nextSession, action === "refresh-profile");
-    },
-    [applySession, clearSessionState, commitSession],
-  );
-
-  useEffect(() => {
-    let isMounted = true;
-    mountedRef.current = true;
-
-    void client.auth
-      .getSession()
-      .then(async ({ data, error: sessionError }) => {
-        if (!isMounted) {
-          return;
-        }
-
-        if (sessionError) {
-          setError(sessionError.message);
-          return;
-        }
-
-        await applySession(data.session);
-      })
-      .catch((unknownError: unknown) => {
-        if (isMounted) {
-          setError(authErrorMessage(unknownError));
-        }
-      })
-      .finally(() => {
-        if (isMounted) {
-          setIsLoading(false);
-        }
-      });
-
-    const {
-      data: { subscription },
-    } = client.auth.onAuthStateChange((event, nextSession) => {
-      void applyAuthEvent(event, nextSession).catch((unknownError: unknown) => {
-        setError(authErrorMessage(unknownError));
-      });
-    });
-
-    return () => {
-      isMounted = false;
-      mountedRef.current = false;
-      subscription.unsubscribe();
-    };
-  }, [applyAuthEvent, applySession, client.auth]);
-
-  const signIn = async ({ email, password }: AuthCredentials) => {
-    setIsSubmitting(true);
-    setError(null);
-    setNotice(null);
-
-    try {
-      const { data, error: signInError } =
-        await client.auth.signInWithPassword({
-          email: email.trim(),
-          password,
-        });
-
-      if (signInError) {
-        throw signInError;
-      }
-
-      await applySession(data.session);
-    } catch (unknownError) {
-      setError(authErrorMessage(unknownError));
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const signUp = async ({ email, password }: AuthCredentials) => {
-    setIsSubmitting(true);
-    setError(null);
-    setNotice(null);
-
-    try {
-      const { data, error: signUpError } = await client.auth.signUp({
-        email: email.trim(),
-        password,
-      });
-
-      if (signUpError) {
-        throw signUpError;
-      }
-
-      if (data.session) {
-        await applySession(data.session);
-      } else {
-        setNotice("Compte créé. Vérifie tes emails pour confirmer l'accès.");
-      }
-    } catch (unknownError) {
-      setError(authErrorMessage(unknownError));
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const signOut = async () => {
-    setIsSubmitting(true);
-    setError(null);
-    setNotice(null);
-
-    try {
-      const signedOutUserId = user?.id;
-      await signOutCurrentSupabaseSession();
-      setSession(null);
-      setUser(null);
-      await clearUserLocalState(signedOutUserId);
-    } catch (unknownError) {
-      setError(authErrorMessage(unknownError));
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const refreshSession = useCallback(async () => {
-    const { data, error: sessionError } = await client.auth.getSession();
-
-    if (sessionError) {
-      setError(sessionError.message);
-      return null;
-    }
-
-    return applySession(data.session);
-  }, [applySession, client.auth]);
-
-  const value = useMemo<AuthContextValue>(
-    () => ({
-      isConfigured: true,
-      isLoading,
-      isSubmitting,
-      session,
-      user,
-      accessToken: session?.accessToken ?? null,
-      ...resolveAuthCapabilities(session, user),
-      authorizationError,
-      error,
-      notice,
-      signIn,
-      signUp,
-      signOut,
-      refreshSession,
-      clearError: () => setError(null),
-      clearNotice: () => setNotice(null),
-    }),
-    [
-      authorizationError,
-      error,
-      isLoading,
-      isSubmitting,
-      notice,
-      refreshSession,
-      session,
-      user,
-    ],
-  );
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
-
-function areAuthUsersEqual(left: AuthUser | null, right: AuthUser | null) {
-  return (
-    left?.id === right?.id &&
-    left?.email === right?.email &&
-    left?.name === right?.name &&
-    left?.username === right?.username &&
-    left?.accountType === right?.accountType &&
-    left?.isAdmin === right?.isAdmin &&
-    left?.isPremium === right?.isPremium
-  );
 }
 
 export function useAuth() {

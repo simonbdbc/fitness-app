@@ -9,15 +9,6 @@ export type AppView =
   | "pwaDashboard"
   | "install"
   | "uninstall"
-  | "adminCatalogExercises"
-  | "adminCatalogLevels"
-  | "adminCatalogSessions"
-  | "adminCatalogFormats"
-  | "adminCatalogSeries"
-  | "adminCatalogRepetitions"
-  | "adminCatalogIntervals"
-  | "adminCatalogRests"
-  | "adminCatalogEquipment";
 
 export const appViewDisplayNameByView: Record<AppView, string> = {
   home: "Accueil",
@@ -30,15 +21,6 @@ export const appViewDisplayNameByView: Record<AppView, string> = {
   pwaDashboard: "Tableau de bord PWA",
   install: "Installation",
   uninstall: "Désinstallation",
-  adminCatalogExercises: "Exercices",
-  adminCatalogLevels: "Niveaux",
-  adminCatalogSessions: "Sessions",
-  adminCatalogFormats: "Formats",
-  adminCatalogSeries: "Séries",
-  adminCatalogRepetitions: "Répétitions",
-  adminCatalogIntervals: "Intervalles",
-  adminCatalogRests: "Repos",
-  adminCatalogEquipment: "Équipements",
 };
 
 export const routeByView: Record<AppView, string> = {
@@ -52,57 +34,9 @@ export const routeByView: Record<AppView, string> = {
   pwaDashboard: "/pwa",
   install: "/install",
   uninstall: "/uninstall",
-  adminCatalogExercises: "/admin/catalogue/exercices",
-  adminCatalogLevels: "/admin/catalogue/niveaux",
-  adminCatalogSessions: "/admin/catalogue/sessions",
-  adminCatalogFormats: "/admin/catalogue/formats",
-  adminCatalogSeries: "/admin/catalogue/series",
-  adminCatalogRepetitions: "/admin/catalogue/repetitions",
-  adminCatalogIntervals: "/admin/catalogue/intervalles",
-  adminCatalogRests: "/admin/catalogue/repos",
-  adminCatalogEquipment: "/admin/catalogue/equipements",
 };
 
 export function viewFromPathname(pathname: string): AppView {
-  if (pathname.startsWith("/admin/catalogue/exercices")) {
-    return "adminCatalogExercises";
-  }
-
-  if (
-    pathname.startsWith("/admin/catalogue/niveaux") ||
-    pathname.startsWith("/admin/catalogue/niveaux-formats")
-  ) {
-    return "adminCatalogLevels";
-  }
-
-  if (pathname.startsWith("/admin/catalogue/sessions")) {
-    return "adminCatalogSessions";
-  }
-
-  if (pathname.startsWith("/admin/catalogue/formats")) {
-    return "adminCatalogFormats";
-  }
-
-  if (pathname.startsWith("/admin/catalogue/series")) {
-    return "adminCatalogSeries";
-  }
-
-  if (pathname.startsWith("/admin/catalogue/repetitions")) {
-    return "adminCatalogRepetitions";
-  }
-
-  if (pathname.startsWith("/admin/catalogue/intervalles")) {
-    return "adminCatalogIntervals";
-  }
-
-  if (pathname.startsWith("/admin/catalogue/repos")) {
-    return "adminCatalogRests";
-  }
-
-  if (pathname.startsWith("/admin/catalogue/equipements")) {
-    return "adminCatalogEquipment";
-  }
-
   if (pathname.startsWith("/bibliotheque")) {
     return "bibliotheque";
   }

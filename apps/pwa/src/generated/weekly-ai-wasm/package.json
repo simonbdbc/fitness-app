@@ -3,7 +3,6 @@
   "type": "module",
   "version": "0.1.0",
   "files": [
-    "weekly_ai_wasm_bg.wasm",
     "weekly_ai_wasm.js",
     "weekly_ai_wasm.d.ts"
   ],

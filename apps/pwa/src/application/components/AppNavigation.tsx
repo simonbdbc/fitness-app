@@ -1,6 +1,5 @@
 import { Pressable, Text, View } from "react-native";
 
-import { useAuth } from "@features/auth";
 import { MenuInstallButton } from "@features/pwa";
 import type { PwaMenuTarget } from "@features/pwa";
 import { useAppDesignTheme, useThemeTokens } from "@shared/theme";
@@ -40,7 +39,6 @@ export function AppNavigation({
     sessionLabel,
 }: AppNavigationProps) {
     const tokens = useThemeTokens();
-    const { canAccessAdminCatalog } = useAuth();
 
     return (
         <View className="box-border w-full max-w-full min-w-0 gap-4">
@@ -67,61 +65,7 @@ export function AppNavigation({
                     activeTarget={pwaMenuTargetByView[activeView]}
                     onNavigate={onViewChange}
                 />
-                {canAccessAdminCatalog ? (
-                    <View className="w-full max-w-full min-w-0 gap-2 border-t pt-3">
-                        <Text
-                            className="max-w-full min-w-0 text-xs font-bold uppercase tracking-[1px]"
-                            style={{ color: tokens.colors.accent }}
-                        >
-                            Admin
-                        </Text>
-                        <NavigationButton
-                            activeView={activeView}
-                            item={{ view: "adminCatalogSessions" }}
-                            onViewChange={onViewChange}
-                        />
-                        <NavigationButton
-                            activeView={activeView}
-                            item={{ view: "adminCatalogExercises" }}
-                            onViewChange={onViewChange}
-                        />
-                        <NavigationButton
-                            activeView={activeView}
-                            item={{ view: "adminCatalogLevels" }}
-                            onViewChange={onViewChange}
-                        />
-                        <NavigationButton
-                            activeView={activeView}
-                            item={{ view: "adminCatalogFormats" }}
-                            onViewChange={onViewChange}
-                        />
-                        <NavigationButton
-                            activeView={activeView}
-                            item={{ view: "adminCatalogSeries" }}
-                            onViewChange={onViewChange}
-                        />
-                        <NavigationButton
-                            activeView={activeView}
-                            item={{ view: "adminCatalogRepetitions" }}
-                            onViewChange={onViewChange}
-                        />
-                        <NavigationButton
-                            activeView={activeView}
-                            item={{ view: "adminCatalogIntervals" }}
-                            onViewChange={onViewChange}
-                        />
-                        <NavigationButton
-                            activeView={activeView}
-                            item={{ view: "adminCatalogRests" }}
-                            onViewChange={onViewChange}
-                        />
-                        <NavigationButton
-                            activeView={activeView}
-                            item={{ view: "adminCatalogEquipment" }}
-                            onViewChange={onViewChange}
-                        />
-                    </View>
-                ) : null}
+
             </View>
         </View>
     );

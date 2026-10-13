@@ -89,7 +89,7 @@ const sidebarNavigationContentStyle = {
 };
 
 const appTitle = "ACREA Fitness";
-const subAppTitle = "Programme hebdomadaire poids du corps";
+const subAppTitle = "Démonstration — évaluation et minuteur";
 
 export function AppLayout({
     activeView,
