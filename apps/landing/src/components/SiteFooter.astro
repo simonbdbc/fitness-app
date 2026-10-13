@@ -1,0 +1,42 @@
+---
+import { legalNavigation, siteConfig } from "../config/site.config";
+
+const { useHomepageAnchors = false } = Astro.props;
+
+const loginHref = new URL(
+    siteConfig.app.loginPath ?? siteConfig.app.homePath,
+    siteConfig.app.baseUrl,
+).toString();
+---
+
+<footer class="site-footer">
+    <div class="page-shell footer-inner">
+        <div>
+            <a class="brand" href="/" aria-label="ACREA Fitness, accueil">
+                <img
+                    src="/icons/acrea-icon-64.png"
+                    alt=""
+                    width="32"
+                    height="32"
+                />
+                <span>ACREA <strong>Fitness</strong></span>
+            </a>
+            <p>© 2026 ACREA-FITNESS. Tous droits réservés.</p>
+        </div>
+        <nav aria-label="Navigation de pied de page">
+            {
+                siteConfig.navigation.map((item) => (
+                    <a href={useHomepageAnchors ? `/${item.href}` : item.href}>
+                        {item.label}
+                    </a>
+                ))
+            }
+            <a href={loginHref}>{siteConfig.cta.loginLabel}</a>
+            {
+                legalNavigation.map((item) => (
+                    <a href={item.href}>{item.label}</a>
+                ))
+            }
+        </nav>
+    </div>
+</footer>

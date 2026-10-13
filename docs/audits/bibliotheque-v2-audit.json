@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-11T00:00:00.000Z",
+  "source": {
+    "architecture": "exercise-library-v2",
+    "uniqueSlugs": 6
+  },
+  "output": {
+    "completeExercises": 6,
+    "incompleteExercises": 0,
+    "totalExercises": 6
+  },
+  "countsByPillar": {
+    "warm-up": {
+      "complete": 0,
+      "incomplete": 0
+    },
+    "cardio": {
+      "complete": 2,
+      "incomplete": 0
+    },
+    "strength": {
+      "complete": 2,
+      "incomplete": 0
+    },
+    "proprioception": {
+      "complete": 2,
+      "incomplete": 0
+    },
+    "flexibility": {
+      "complete": 0,
+      "incomplete": 0
+    }
+  },
+  "classificationRules": {
+    "source-category-cardio": 2,
+    "source-category-strength": 2,
+    "technical-balance-core-control": 2
+  },
+  "classificationReviewStatuses": {
+    "valide": 6
+  },
+  "equipmentEvidenceStatuses": {
+    "supported": 6
+  },
+  "incompleteReasons": {},
+  "incomplete": []
+}

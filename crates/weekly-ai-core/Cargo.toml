@@ -1,0 +1,12 @@
+[package]
+name = "weekly-ai-core"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+burn = { workspace = true, features = ["std", "flex"] }
+serde.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+serde_json.workspace = true

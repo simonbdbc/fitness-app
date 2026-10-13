@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 2,
+  "protocolVersion": 4,
+  "catalogReleaseCode": "exercise-library-v2",
+  "exercises": [
+    {
+      "evaluationExerciseCode": "renforcement-strict-pushups",
+      "exerciseSlug": "push-up",
+      "pillar": "strength",
+      "protocolVariant": "strict-technique",
+      "mappingConfidence": "high",
+      "countUnit": "reps",
+      "phase1": { "series": 2, "repetitions": 8 },
+      "phase2": { "series": 3, "repetitions": 8 },
+      "phase3": { "series": 1, "repetitions": null },
+      "levelThresholds": { "level2Minimum": 20, "level3Minimum": 50 }
+    },
+    {
+      "evaluationExerciseCode": "renforcement-bodyweight-squats",
+      "exerciseSlug": "air-squat",
+      "pillar": "strength",
+      "protocolVariant": "bodyweight-standard",
+      "mappingConfidence": "high",
+      "countUnit": "reps",
+      "phase1": { "series": 2, "repetitions": 12 },
+      "phase2": { "series": 3, "repetitions": 12 },
+      "phase3": { "series": 1, "repetitions": null },
+      "levelThresholds": { "level2Minimum": 30, "level3Minimum": 80 }
+    },
+    {
+      "evaluationExerciseCode": "cardio-burpee-sans-pompe",
+      "exerciseSlug": "burpee",
+      "pillar": "cardio",
+      "protocolVariant": "no-push-up-no-jump",
+      "mappingConfidence": "high",
+      "countUnit": "reps",
+      "phase1": { "series": 2, "repetitions": 8 },
+      "phase2": { "series": 3, "repetitions": 8 },
+      "phase3": { "series": 1, "repetitions": null },
+      "levelThresholds": { "level2Minimum": 20, "level3Minimum": 50 }
+    },
+    {
+      "evaluationExerciseCode": "cardio-mountain-climber-controle",
+      "exerciseSlug": "mountain-climber",
+      "pillar": "cardio",
+      "protocolVariant": "slow-controlled",
+      "mappingConfidence": "high",
+      "countUnit": "reps",
+      "phase1": { "series": 2, "repetitions": 16 },
+      "phase2": { "series": 3, "repetitions": 16 },
+      "phase3": { "series": 1, "repetitions": null },
+      "levelThresholds": { "level2Minimum": 40, "level3Minimum": 90 }
+    },
+    {
+      "evaluationExerciseCode": "proprioception-leg-raise",
+      "exerciseSlug": "lying-leg-raise",
+      "pillar": "proprioception",
+      "protocolVariant": "supine-controlled",
+      "mappingConfidence": "high",
+      "countUnit": "reps",
+      "phase1": { "series": 2, "repetitions": 8 },
+      "phase2": { "series": 3, "repetitions": 8 },
+      "phase3": { "series": 1, "repetitions": null },
+      "levelThresholds": { "level2Minimum": 20, "level3Minimum": 50 }
+    },
+    {
+      "evaluationExerciseCode": "proprioception-planche-lean",
+      "exerciseSlug": "lean-planche",
+      "pillar": "proprioception",
+      "protocolVariant": "dynamic-forward-back-rep",
+      "mappingConfidence": "medium",
+      "countUnit": "reps",
+      "phase1": { "series": 2, "repetitions": 6 },
+      "phase2": { "series": 3, "repetitions": 6 },
+      "phase3": { "series": 1, "repetitions": null },
+      "levelThresholds": { "level2Minimum": 10, "level3Minimum": 30 }
+    }
+  ]
+}

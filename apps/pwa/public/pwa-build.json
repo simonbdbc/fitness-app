@@ -1,0 +1,10 @@
+{
+  "appName": "ACREA Fitness",
+  "appVersion": "0.1.0",
+  "buildId": "development",
+  "commitSha": "local",
+  "releaseChannel": "development",
+  "buildDate": "development",
+  "origin": "http://localhost:8081",
+  "supportContact": "support@acrea-fitness.fr"
+}

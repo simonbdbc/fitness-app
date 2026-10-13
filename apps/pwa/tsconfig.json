@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "customConditions": [
+      "react-native"
+    ],
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "module": "preserve",
+    "moduleDetection": "force",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ESNext",
+    "types": [
+      "@testing-library/jest-dom",
+      "vitest/globals",
+      "node"
+    ],
+    "paths": {
+      "@application": [
+        "./src/application/index.ts"
+      ],
+      "@application/*": [
+        "./src/application/*"
+      ],
+      "@features/*": [
+        "./src/features/*"
+      ],
+      "@shared/*": [
+        "./src/shared/*"
+      ]
+    }
+  },
+  "include": [
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "nativewind-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "web-build"
+  ],
+  "extends": "./tsconfig.expo-base.json"
+}

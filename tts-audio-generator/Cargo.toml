@@ -1,0 +1,17 @@
+[package]
+name = "tts-audio-generator"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = ["burn-onnx-validation"]
+burn-onnx-validation = ["dep:burn-onnx"]
+
+[dependencies]
+anyhow = "1.0"
+burn = { version = "0.21.0", default-features = false, features = ["std", "flex"] }
+burn-onnx = { version = "0.21.0", optional = true }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+toml = "1.1"

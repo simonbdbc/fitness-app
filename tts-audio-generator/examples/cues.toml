@@ -1,0 +1,49 @@
+voice_model = "./voices/fr_FR/example.onnx"
+voice_config = "./voices/fr_FR/example.onnx.json"
+output_dir = "../apps/pwa/assets/audio/cues"
+
+# Default generation expects a Piper-compatible binary:
+#
+#   piper --model <voice_model> --config <voice_config> --output_file <file>
+#
+# Text is written on stdin. Override this block if you use the Python module:
+#
+# [synthesizer]
+# command = "python3"
+# args = ["-m", "piper", "-m", "{voice_model}", "-f", "{output_file}", "--", "{text}"]
+# stdin_text = false
+
+[[cues]]
+id = "countdown_3"
+text = "3"
+filename = "countdown-3.wav"
+
+[[cues]]
+id = "countdown_2"
+text = "2"
+filename = "countdown-2.wav"
+
+[[cues]]
+id = "countdown_1"
+text = "1"
+filename = "countdown-1.wav"
+
+[[cues]]
+id = "work_start"
+text = "C'est parti"
+filename = "work-start.wav"
+
+[[cues]]
+id = "rest_start"
+text = "Repos"
+filename = "rest-start.wav"
+
+[[cues]]
+id = "block_complete"
+text = "Bloc termine"
+filename = "block-complete.wav"
+
+[[cues]]
+id = "session_complete"
+text = "Seance terminee"
+filename = "session-complete.wav"

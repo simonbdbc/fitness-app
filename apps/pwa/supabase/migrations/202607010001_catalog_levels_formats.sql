@@ -1,0 +1,2 @@
+-- 20260701113834_add_catalog_levels_formats.sql
+-- No-op: le schema catalogue numerique et le seed complet sont geres par 202606300001_catalog_normalized.sql.

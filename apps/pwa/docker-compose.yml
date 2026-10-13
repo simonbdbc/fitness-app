@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: fitness_app
+      POSTGRES_USER: fitness
+      POSTGRES_PASSWORD: fitness
+    ports:
+      - "5432:5432"
+    volumes:
+      - fitness_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fitness -d fitness_app"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  fitness_postgres_data:

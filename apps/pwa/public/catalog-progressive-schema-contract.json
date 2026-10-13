@@ -1,0 +1,16 @@
+{
+  "schemaContractVersion": 1,
+  "productionProjectRef": "vnsisuhlaxxldpwjhgcm",
+  "rpc": {
+    "index": "get_active_catalog_index",
+    "details": "get_active_catalog_details"
+  },
+  "detailBatchSize": 25,
+  "minimumCatalog": {
+    "exercises": 707,
+    "pillars": 5,
+    "sessionTemplateLevels": 1533,
+    "sessionTemplates": 455
+  },
+  "requiredMediaKinds": ["poster", "animation"]
+}

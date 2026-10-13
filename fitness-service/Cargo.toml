@@ -1,0 +1,19 @@
+[package]
+name = "fitness-backend"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0"
+axum = "0.8.9"
+burn = { version = "0.21.0", default-features = false, features = ["std", "flex"] }
+weekly-ai-core = { path = "../crates/weekly-ai-core" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sqlx = { version = "0.9.0", features = ["runtime-tokio", "tls-rustls", "postgres", "macros", "uuid", "json"] }
+thiserror = "2.0"
+tokio = { version = "1.44", features = ["macros", "rt-multi-thread", "net"] }
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1.0", features = ["serde", "v4"] }

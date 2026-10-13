@@ -1,0 +1,3 @@
+# Cloudflare Pages applique automatiquement le fallback SPA en l'absence de
+# fichier 404.html. Une reecriture explicite vers /index.html provoquerait une
+# redirection 308 vers / a cause des URLs propres de Pages.

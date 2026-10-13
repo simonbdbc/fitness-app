@@ -1,0 +1,2 @@
+-- 20260706074026_simplify_renforcement_format_details.sql
+-- No-op: le schema catalogue numerique et le seed complet sont geres par 202606300001_catalog_normalized.sql.

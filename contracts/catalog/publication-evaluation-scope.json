@@ -1,0 +1,13 @@
+{
+  "version": "evaluation-only-20261013.1",
+  "allowedExerciseSlugs": [
+    "air-squat",
+    "burpee",
+    "lean-planche",
+    "lying-leg-raise",
+    "mountain-climber",
+    "push-up"
+  ],
+  "contract": "contracts/catalog/acrea-level-evaluation-v4.json",
+  "note": "Only the V4 evaluation exercises are public. Full catalogue, incomplete fiches and historical exercise rows remain private."
+}

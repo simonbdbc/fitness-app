@@ -1,0 +1,9 @@
+{
+  "model": "weekly_scorer_v1",
+  "backend": "burn-flex",
+  "burnVersion": "0.21.0",
+  "architecture": [16, 8, 1],
+  "trainingSource": "acrea-rules-v1-distillation",
+  "featureSchemaVersion": 1,
+  "sha256": "219ea2ca00152f2553a19ce48da26768fc6a1f6729944173a010b3562bfefa55"
+}

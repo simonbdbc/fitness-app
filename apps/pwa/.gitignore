@@ -1,0 +1,6 @@
+.env
+.expo/
+dist/
+web-build/
+node_modules/
+backend/target/

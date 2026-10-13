@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "ACREA Fitness",
+    "slug": "acrea-fitness",
+    "version": "0.1.0",
+    "scheme": "acreafitness",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "icon": "./assets/app-icon.png",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.acrea.fitness",
+      "icon": "./assets/app-icon.png"
+    },
+    "android": {
+      "package": "com.acrea.fitness",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/app-icon.png",
+        "backgroundColor": "#0c0f13"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/app-icon.png"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "headers": {
+            "Cross-Origin-Embedder-Policy": "credentialless",
+            "Cross-Origin-Opener-Policy": "same-origin"
+          },
+          "sitemap": false
+        }
+      ],
+      "expo-sqlite",
+      "expo-audio"
+    ],
+    "extra": {
+      "router": {
+        "sitemap": false
+      }
+    }
+  }
+}
