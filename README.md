@@ -39,8 +39,10 @@ et ne qualifie pas le mobile natif ni les résultats sportifs.
 ## Provenance et publication
 
 Le développement est conservé dans GitLab privé. Ce dépôt reçoit un export contrôlé,
-sans historique privé ni données utilisateur. Le job automatique est suspendu tant que
-sa source corrigée et les intégrations externes ne sont pas reçues.
+sans historique privé ni données utilisateur. Le job contrôlé lit la branche dédiée
+`publication/github-main` toutes les quinze minutes lorsque le Mac de publication
+est éveillé et connecté. Cette branche est exclue des builds Cloudflare ;
+la synchronisation des sources ne déploie pas l’application.
 Aucune licence globale nouvelle n’est ajoutée : les notices des contenus retenus sont
 préservées, sans présumer des droits supplémentaires sur code, fiches, médias ou dépendances.
 
