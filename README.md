@@ -43,3 +43,5 @@ sans historique privé ni données utilisateur. Le job automatique est suspendu 
 sa source corrigée et les intégrations externes ne sont pas reçues.
 Aucune licence globale nouvelle n’est ajoutée : les notices des contenus retenus sont
 préservées, sans présumer des droits supplémentaires sur code, fiches, médias ou dépendances.
+
+[Périmètre de publication et exclusions de production](PUBLICATION.md).
